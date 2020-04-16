@@ -1,0 +1,28 @@
+{
+  "name": "remember-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcoasjunior/remember-back.git"
+  },
+  "author": "Marco Antonio da Silva Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcoasjunior/remember-back/issues"
+  },
+  "homepage": "https://github.com/marcoasjunior/remember-back#readme",
+  "dependencies": {
+    "botbuilder": "^4.8.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
