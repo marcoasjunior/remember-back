@@ -1,32 +1,21 @@
 const express = require('express');
 const router = express();
-const adapter  = require('./bot/adapter')
+const { MemoryStorage, UserState } = require('botbuilder')
+const adapter = require('./bot/adapter')
+const Bot = require('./bot/bot')
+const memoryStorage = new MemoryStorage();
+const userState = new UserState(memoryStorage);
+
+const myBot = new Bot(userState) // Cria a instância e recebe o gerenciador de estado do usuário
 
 router.post('/messages', (req, res) => {
 
-    // Use the adapter to process the incoming web request into a TurnContext object.
+    adapter.processActivity(req, res, async (context) => {
 
-    adapter.processActivity(req, res, async (turnContext) => {
-
-        console.log(turnContext)
-  
-        // Do something with this incoming activity!
-        if (turnContext.activity.type === 'message') {        
-  
-            // Get the user's text
-            const utterance = turnContext.activity.text;
-  
-            if(utterance == 'oi') return await turnContext.sendActivity(`Olá, como vai?`);
-
-
-            // send a reply
-            
-           await turnContext.sendActivity(`I heard you say ${ utterance }`);
-
-        }
+      // Route to main dialog.
+      await myBot.run(context);
     })
   })
-  
 
 
 module.exports = router
